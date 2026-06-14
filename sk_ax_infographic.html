@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SK그룹 AX 대전환</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #0A0F1E;
+    color: #fff;
+    width: 800px;
+    min-height: 1100px;
+  }
+
+  .card {
+    width: 800px;
+    background: linear-gradient(160deg, #0A0F1E 0%, #0D1635 60%, #0A1628 100%);
+    padding: 52px 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 배경 장식 */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(0,163,255,0.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 340px; height: 340px;
+    background: radial-gradient(circle, rgba(255,60,120,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* 헤더 */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  .badge {
+    background: linear-gradient(90deg, #0057FF, #00C6FF);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: inline-block;
+  }
+  .title {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -1px;
+  }
+  .title em {
+    font-style: normal;
+    background: linear-gradient(90deg, #00C6FF, #0057FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    font-size: 13.5px;
+    color: #7B8DB0;
+    margin-top: 8px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+  .logo-area {
+    text-align: right;
+  }
+  .logo-text {
+    font-size: 28px;
+    font-weight: 900;
+    color: #FF4500;
+    letter-spacing: 2px;
+  }
+  .logo-sub {
+    font-size: 11px;
+    color: #4A5A7A;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* 핵심 선언 */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(0,87,255,0.18), rgba(0,198,255,0.10));
+    border-left: 4px solid #00C6FF;
+    border-radius: 0 12px 12px 0;
+    padding: 18px 24px;
+    margin-bottom: 34px;
+    position: relative;
+  }
+  .quote-box .q-mark {
+    font-size: 52px;
+    color: rgba(0,198,255,0.25);
+    position: absolute;
+    top: 4px; left: 16px;
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+  .quote-box p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #E0EEFF;
+    padding-left: 28px;
+    line-height: 1.6;
+  }
+  .quote-box span {
+    font-size: 12px;
+    color: #5A7AA0;
+    padding-left: 28px;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* 3대 키 메시지 */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #3A6AFF;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .pillar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 20px 18px;
+    transition: border-color 0.2s;
+  }
+  .pillar:hover { border-color: rgba(0,198,255,0.3); }
+  .pillar .icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .pillar .p-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: #00C6FF;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .pillar .p-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #E0EEFF;
+    margin-bottom: 7px;
+    line-height: 1.3;
+  }
+  .pillar .p-desc {
+    font-size: 12px;
+    color: #6A85AA;
+    line-height: 1.7;
+  }
+
+  /* 에이전트 전략 */
+  .agent-box {
+    background: linear-gradient(135deg, rgba(255,60,120,0.12), rgba(120,0,255,0.10));
+    border: 1px solid rgba(255,60,120,0.2);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .agent-icon {
+    font-size: 44px;
+    flex-shrink: 0;
+  }
+  .agent-text .a-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #FFB0C8;
+    margin-bottom: 6px;
+  }
+  .agent-text .a-desc {
+    font-size: 13px;
+    color: #8A9AAA;
+    line-height: 1.7;
+  }
+  .agent-text .a-tag {
+    display: inline-block;
+    background: rgba(255,60,120,0.2);
+    color: #FF7090;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+
+  /* SK 경쟁력 */
+  .stack-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .stack-chip {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+  }
+  .stack-chip .chip-icon { font-size: 20px; margin-bottom: 5px; }
+  .stack-chip .chip-label { font-size: 12px; color: #8A9FBB; font-weight: 500; }
+
+  /* 경고 박스 */
+  .warning-box {
+    background: linear-gradient(135deg, rgba(255,165,0,0.12), rgba(255,80,0,0.08));
+    border: 1px solid rgba(255,140,0,0.25);
+    border-radius: 12px;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .warning-box .w-icon { font-size: 30px; flex-shrink: 0; }
+  .warning-box p { font-size: 13px; color: #FFCF80; font-weight: 500; line-height: 1.65; }
+
+  /* 하단 */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 18px;
+  }
+  .footer-left { font-size: 11px; color: #3A5070; }
+  .footer-right { font-size: 11px; color: #3A5070; }
+  .tag-list { display: flex; gap: 8px; }
+  .tag {
+    background: rgba(0,87,255,0.15);
+    color: #5090FF;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <div>
+      <div class="badge">2026 뉴 이천포럼</div>
+      <div class="title">SK그룹, <em>AX 대전환</em><br>선언</div>
+      <div class="subtitle">AI Transformation을 그룹 경영 핵심 축으로 격상 · 2026.06.14</div>
+    </div>
+    <div class="logo-area">
+      <div class="logo-text">SK</div>
+      <div class="logo-sub">CHEY TAE-WON</div>
+    </div>
+  </div>
+
+  <!-- 핵심 선언 -->
+  <div class="quote-box">
+    <div class="q-mark">"</div>
+    <p>360도 전방위로, 전속력으로 AX에 돌입해야 할 때</p>
+    <span>— 최태원 SK그룹 회장, 2026 뉴 이천포럼</span>
+  </div>
+
+  <!-- 3대 핵심 메시지 -->
+  <div class="section-title">핵심 메시지 3</div>
+  <div class="pillars">
+    <div class="pillar">
+      <span class="icon">🎯</span>
+      <div class="p-num">01</div>
+      <div class="p-title">업무 정의가<br>AX의 출발점</div>
+      <div class="p-desc">무엇을 하는지 정확히 파악하고 데이터 체계를 먼저 정비해야 실질 성과 가능</div>
+    </div>
+    <div class="pillar">
+      <span class="icon">🔗</span>
+      <div class="p-num">02</div>
+      <div class="p-title">'나의 AI'에서<br>'우리의 AI'로</div>
+      <div class="p-desc">개인 활용을 넘어 조직 전체 프로세스·의사결정과 AI를 결합하는 단계로 진화</div>
+    </div>
+    <div class="pillar">
+      <span class="icon">⚙️</span>
+      <div class="p-num">03</div>
+      <div class="p-title">AX = 운영개선<br>(O/I)의 수단</div>
+      <div class="p-desc">일하는 방식을 바꾸는 모든 과정이 O/I이며, AX는 이를 가장 빠르게 실행하는 도구</div>
+    </div>
+  </div>
+
+  <!-- 에이전트 전략 -->
+  <div class="agent-box">
+    <div class="agent-icon">🤖</div>
+    <div class="agent-text">
+      <div class="a-title">1인 1 에이전트 → 수십 개의 회장 아바타</div>
+      <div class="a-desc">구성원 90% 이상이 AI를 활용 중이나 개인 수준에 그침. 최 회장은 수십 개의 AI 에이전트를 직접 운영해 각 계열사 경영진·구성원과 상시 소통하는 구조로 전환하겠다고 선언.</div>
+      <span class="a-tag"># 조직형 AI 에이전트</span>
+    </div>
+  </div>
+
+  <!-- SK 풀스택 경쟁력 -->
+  <div class="section-title">SK AI 풀스택 포트폴리오</div>
+  <div class="stack-row">
+    <div class="stack-chip">
+      <div class="chip-icon">💾</div>
+      <div class="chip-label">메모리 반도체<br>(SK하이닉스)</div>
+    </div>
+    <div class="stack-chip">
+      <div class="chip-icon">📡</div>
+      <div class="chip-label">통신 인프라<br>(SK텔레콤)</div>
+    </div>
+    <div class="stack-chip">
+      <div class="chip-icon">🏢</div>
+      <div class="chip-label">데이터센터</div>
+    </div>
+    <div class="stack-chip">
+      <div class="chip-icon">⚡</div>
+      <div class="chip-label">에너지·<br>전기화</div>
+    </div>
+  </div>
+
+  <!-- 경고 메시지 -->
+  <div class="warning-box">
+    <div class="w-icon">⚠️</div>
+    <p>지금 전속력으로 전방위적인 AX를 실행하지 않는다면, <strong>지금의 절호의 기회는 다시 쉽게 오지 않을 것</strong>이라고 최 회장은 경고. 경영진은 "먼저 혁신하고, 작게 시작해 빠르게 확산"에 결의.</p>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    <div class="footer-left">Source: 조선비즈 · SK그룹 공식 발표 · 2026.06.14</div>
+    <div class="tag-list">
+      <span class="tag">#AX</span>
+      <span class="tag">#AI전환</span>
+      <span class="tag">#SK그룹</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
